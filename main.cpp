@@ -6,6 +6,7 @@ using namespace sf;
 
 int main ()
 {
+  int i = 0;
   int points = 5;
   bool display = true;
   ConvexShape convex;
@@ -31,32 +32,41 @@ int main ()
           if (Keyboard::isKeyPressed(Keyboard::A))
           {
             display = true;
-            convex.setPoint(0, sf::Vector2f(0.f, 0.f));
-            convex.setPoint(1, sf::Vector2f(150.f, 10.f));
-            convex.setPoint(2, sf::Vector2f(120.f, 90.f));
-            convex.setPoint(3, sf::Vector2f(30.f, 100.f));
-            convex.setPoint(4, sf::Vector2f(0.f, 50.f));
+
           }
           if (ev.key.code == Keyboard::B)
           {
             display = false;
           }
-          // if (Keyboard::isKeyPressed(Keyboard::B))
+          // if (Keyboard::isKeyPressed(Keyboard::N))
           // {
-
+          //   for (int i = 0; i < points; i++)
+          //   {
+          //     if (Mouse::isButtonPressed(Mouse::Left))
+          //     {     
+          //         convex.setPoint(i, Vector2f(x, y));
+          //     }           
+          //   }
+            
           // }
           
           std::cout << "key:" << ev.key.code << std::endl;
+
         case Event::MouseButtonPressed:
           Vector2i pos = Mouse::getPosition(win);
           x = pos.x;
           y = pos.y;
-
+          i++;
+          if (i > points) {i = 0;}
           if (Mouse::isButtonPressed(Mouse::Left))
           {
             
-              std::cout << "x:" << x << "y:" << y << std::endl;
+            convex.setPoint(i, Vector2f(x, y));
+                    
           }
+            
+          std::cout << "x:" << x << "y:" << y << std::endl;
+          
 
 
         }
